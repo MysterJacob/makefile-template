@@ -34,8 +34,8 @@ $(BIN_DIR):
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(TEST_OBJ_DIR)
 
-$(PROJECT_TARGET): $(BIN_DIR) $(SOURCES) $(OBJ_FILES)
-	@$(CC) $(CC_FLAGS) $(LD_FILES) $(OBJ_FILES) -o $(PROJECT_TARGET)
+$(PROJECT_TARGET): $(BIN_DIR) $(OBJ_FILES)
+	@$(CC) $(CC_FLAGS) $(LD_FLAGS) $(OBJ_FILES) -o $(PROJECT_TARGET)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(CC) $(CC_FLAGS) -I$(INCLUDE_DIR) -c $< -o $@
@@ -44,7 +44,7 @@ objs: $(BIN_DIR) $(OBJ_FILES)
 
 
 $(TEST_OBJ_DIR)%.o: $(TEST_SRC)%.c
-	@gcc $(CC_FLAGS) -I$(INCLUDE_DIR) -c $< -o $@
+	@$(cc) $(CC_FLAGS) -I$(INCLUDE_DIR) -c $< -o $@
 
 $(TEST_TARGET): $(BIN_DIR) $(OBJ_FILES) $(TEST_OBJ_FILES)
 	@$(CC) $(CC_FLAGS) -I$(INCLUDE_DIR) $(TEST_OBJ_FILES) $(filter-out $(OBJ_DIR)main.o, $(OBJ_FILES)) -o $(TEST_TARGET)
