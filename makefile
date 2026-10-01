@@ -16,7 +16,6 @@ BUILD_DIR = $(BIN_DIR)build/
 OBJ_DIR = $(BIN_DIR)obj/
 TEST_OBJ_DIR = $(BIN_DIR)tests/
 
-
 SOURCES = $(wildcard $(SRC_DIR)*.c)
 OBJ_FILES = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SOURCES))
 PROJECT_TARGET = $(BUILD_DIR)$(TARGET_NAME)
@@ -41,7 +40,6 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(CC) $(CC_FLAGS) -I$(INCLUDE_DIR) -c $< -o $@
 
 objs: $(BIN_DIR) $(OBJ_FILES)
-
 
 $(TEST_OBJ_DIR)%.o: $(TEST_SRC)%.c
 	@$(cc) $(CC_FLAGS) -I$(INCLUDE_DIR) -c $< -o $@
